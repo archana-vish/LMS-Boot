@@ -23,7 +23,6 @@ public class AllowanceServiceImpl implements  AllowanceService {
     @Override
     public List<Allowance> getAllowances() {
         List<Allowance> allowances = new ArrayList<>();
-//        return allowanceRepository.getAllAllowance();
         Iterator<Allowance> iterator = allowanceRepository.findAll().iterator();
         while (iterator.hasNext()) {
             allowances.add(iterator.next());
