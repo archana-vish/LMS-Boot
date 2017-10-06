@@ -9,13 +9,5 @@ import java.util.Collection;
 import java.util.List;
 
 public interface AllowanceRepository extends CrudRepository<Allowance, Integer> {
-
-    String Q_GET_ALL_ALLOWANCE = "select a from Allowance a left join a.unit";
-
-    @Query(Q_GET_ALL_ALLOWANCE)
-    List<Allowance> getAllAllowance();
-
-    Allowance findAllowanceByUser(User user);
-
-
+    List<Allowance> findAllowanceByUser(User userAllowance);
 }

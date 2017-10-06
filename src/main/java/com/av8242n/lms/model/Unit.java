@@ -10,6 +10,7 @@ import java.util.List;
 public class Unit {
 
     @Id
+    @Column(name="unitid")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int unitid;
 

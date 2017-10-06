@@ -1,4 +1,4 @@
-drop table user if exists;
+drop table userAllowance if exists;
 
 drop table allowance if exists;
 
@@ -15,15 +15,17 @@ drop table unit if exists;
 --SCRIPTS FOR STATUS
 
 create table status (
-  statusid int,
+  statusid int PRIMARY KEY AUTO_INCREMENT,
   statusname varchar2(20)
 );
 
 insert into status values (1, 'NEW');
 
-insert into status values (2, 'APPROVED');
+insert into status values (2, 'REQUESTED');
 
-insert into status values (3, 'CANCELLED');
+insert into status values (3, 'APPROVED');
+
+insert into status values (4, 'CANCELLED');
 
 --SCRIPTS FOR UNIT
 
@@ -40,7 +42,7 @@ insert into unit values (2, 'HOURS');
 --SCRIPTS FOR TYPE
 
 create table type (
-  typeid int,
+  typeid int PRIMARY KEY AUTO_INCREMENT,
   typename varchar2(20)
 );
 
@@ -50,7 +52,7 @@ insert into type values (2, 'SICK');
 
 --SCRIPTS FOR USER
 
-create table user(
+create table userAllowance(
   userid int primary key AUTO_INCREMENT ,
   loginid varchar2(20),
   email varchar2(40),
@@ -59,15 +61,15 @@ create table user(
   password varchar2(20)
 );
 
-insert into user  (loginid, email, firstname, lastname, password) values (
+insert into userAllowance  (loginid, email, firstname, lastname, password) values (
   'av8242n', 'av8242n@gre.ac.uk','Archana','V','admin'
 );
 
-insert into user  (loginid, email, firstname, lastname, password)  values (
+insert into userAllowance  (loginid, email, firstname, lastname, password)  values (
   'manager', 'manager@gre.ac.uk','Manager','XXX','manager'
 );
 
-insert into user  (loginid, email, firstname, lastname, password) values (
+insert into userAllowance  (loginid, email, firstname, lastname, password) values (
   'student', 'student@gre.ac.uk','Student','YYY','student'
 );
 

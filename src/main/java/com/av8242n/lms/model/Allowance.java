@@ -58,12 +58,12 @@ public class Allowance {
         this.balanceHours = balanceHours;
     }
 
-    public User getUser() {
+    public User getUserAllowance() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserAllowance(User userAllowance) {
+        this.user = userAllowance;
     }
 
     public int getAllowanceid() {
@@ -150,7 +150,7 @@ public class Allowance {
     @Override
     public String toString() {
         return "Allowance{" +
-                "user=" + user +
+                "userAllowance=" + user +
                 ", allowanceid=" + allowanceid +
                 ", unit=" + unit +
                 ", hoursPerDay=" + hoursPerDay +

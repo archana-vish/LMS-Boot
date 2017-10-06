@@ -32,6 +32,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Allowance> allowances;
 
+    @OneToMany(mappedBy ="user")
+    List<Leave> leaves;
+
+    @OneToMany(mappedBy = "approver")
+    List<Leave> approvedLeaves;
+
     public User() {}
 
     public User(int userid, String loginid, String email, String firstname, String lastname, String password) {
@@ -100,6 +106,26 @@ public class User {
     @JsonIgnore
     public void setAllowances(List<Allowance> allowances) {
         this.allowances = allowances;
+    }
+
+    @JsonIgnore
+    public List<Leave> getLeaves() {
+        return leaves;
+    }
+
+    @JsonIgnore
+    public void setLeaves(List<Leave> leaves) {
+        this.leaves = leaves;
+    }
+
+    @JsonIgnore
+    public List<Leave> getApprovedLeaves() {
+        return approvedLeaves;
+    }
+
+    @JsonIgnore
+    public void setApprovedLeaves(List<Leave> approvedLeaves) {
+        this.approvedLeaves = approvedLeaves;
     }
 
     @Override

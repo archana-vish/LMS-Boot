@@ -31,7 +31,7 @@ public class AllowanceServiceImpl implements  AllowanceService {
     }
 
     @Override
-    public Allowance findByUserId(int id) {
+    public List<Allowance> findByUserId(int id) {
         return allowanceRepository.findAllowanceByUser(userRepository.findOne(id));
     }
 

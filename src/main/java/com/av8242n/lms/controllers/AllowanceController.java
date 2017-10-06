@@ -20,7 +20,7 @@ public class AllowanceController {
     }
 
     @GetMapping("/{userid}")
-    public Allowance getUserAllowance(@PathVariable("userid") int id){
+    public List<Allowance> getUserAllowance(@PathVariable("userid") int id){
         return allowanceService.findByUserId(id);
     }
 

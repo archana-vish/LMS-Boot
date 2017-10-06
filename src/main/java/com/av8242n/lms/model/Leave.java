@@ -1,10 +1,7 @@
 package com.av8242n.lms.model;
 
-import org.apache.tomcat.jni.Local;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name="leave")
@@ -15,8 +12,9 @@ public class Leave {
     @Column(name="leaveid")
     private int leaveid;
 
-    @Column(name="userid")
-    private int userid;
+    @ManyToOne
+    @JoinColumn (name="userid")
+    private User user;
 
     @Column(name="allowanceid")
     private int allowanceid;
@@ -33,28 +31,34 @@ public class Leave {
     @Column(name="totalhours")
     private int totalHours;
 
-    @Column(name="statusid")
-    private int status;
+    @ManyToOne
+    @JoinColumn(name="statusid")
+    private Status status;
 
-    @Column(name="typeid")
-    private int type;
+    @ManyToOne
+    @JoinColumn(name="typeid")
+    private Type type;
 
     @Column(name="createdate")
+    @org.hibernate.annotations.Type(type="java.time.LocalDate")
     private LocalDate createdDate;
 
     @Column(name="submitdate")
+    @org.hibernate.annotations.Type(type="java.time.LocalDate")
     private LocalDate submitDate;
 
     @Column(name="modifydate")
+    @org.hibernate.annotations.Type(type="java.time.LocalDate")
     private LocalDate modifyDate;
 
-    @Column(name="approverid")
-    private int approverid;
+    @ManyToOne
+    @JoinColumn(name="approverid")
+    private User approver;
 
     public Leave() {}
 
-    public Leave(int userid, int allowanceid, LocalDate startDate, LocalDate endDate, int totalDays, int totalHours, int status, int type, LocalDate createdDate, LocalDate submitDate, LocalDate modifyDate, int approverid) {
-        this.userid = userid;
+    public Leave(User user, int allowanceid, LocalDate startDate, LocalDate endDate, int totalDays, int totalHours, Status status, Type type, LocalDate createdDate, LocalDate submitDate, LocalDate modifyDate, User approver) {
+        this.user = user;
         this.allowanceid = allowanceid;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -65,15 +69,15 @@ public class Leave {
         this.createdDate = createdDate;
         this.submitDate = submitDate;
         this.modifyDate = modifyDate;
-        this.approverid = approverid;
+        this.approver = approver;
     }
 
-    public int getUserid() {
-        return userid;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getAllowanceid() {
@@ -92,8 +96,6 @@ public class Leave {
         this.leaveid = leaveid;
     }
 
-
-
     public int getTotalDays() {
         return totalDays;
     }
@@ -110,19 +112,19 @@ public class Leave {
         this.totalHours = totalHours;
     }
 
-    public int getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public int getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -166,18 +168,18 @@ public class Leave {
         this.modifyDate = modifyDate;
     }
 
-    public int getApproverid() {
-        return approverid;
+    public User getApprover() {
+        return approver;
     }
 
-    public void setApproverid(int approverid) {
-        this.approverid = approverid;
+    public void setApprover(User approver) {
+        this.approver = approver;
     }
 
     @Override
     public String toString() {
         return "Leave{" +
-                "userid=" + userid +
+                "userLeave=" + user +
                 ", allowanceid=" + allowanceid +
                 ", leaveid=" + leaveid +
                 ", startDate=" + startDate +
@@ -189,7 +191,7 @@ public class Leave {
                 ", createdDate=" + createdDate +
                 ", submitDate=" + submitDate +
                 ", modifyDate=" + modifyDate +
-                ", approverid='" + approverid + '\'' +
+                ", approverid='" + approver + '\'' +
                 '}';
     }
 }

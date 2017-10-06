@@ -11,6 +11,6 @@ public interface AllowanceService {
     Allowance addAllowance(Allowance allowance);
     Allowance editAllowance(Allowance allowance);
     List<Allowance> deleteAllowance(int id);
-    Allowance findByUserId(int id);
+    List<Allowance> findByUserId(int id);
 
 }

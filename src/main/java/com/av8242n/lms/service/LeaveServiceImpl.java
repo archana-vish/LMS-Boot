@@ -2,6 +2,7 @@ package com.av8242n.lms.service;
 
 import com.av8242n.lms.model.Leave;
 import com.av8242n.lms.repositories.LeaveRepository;
+import com.av8242n.lms.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,9 @@ public class LeaveServiceImpl implements LeaveService {
 
     @Autowired
     LeaveRepository leaveRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public List<Leave> getAllLeave() {
@@ -26,16 +30,7 @@ public class LeaveServiceImpl implements LeaveService {
 
     @Override
     public List<Leave> getLeave(int userid) {
-
-        return Arrays.asList(new Leave[]{ new Leave(1,1, LocalDate.of(2017,06,1),
-                LocalDate.of(2017,6,15),
-                1, 6, 2,1,
-                LocalDate.of(2017,6,16),
-                LocalDate.of(2017, 6, 16),
-                LocalDate.of(2017, 6, 16),
-                2)});
-
-        //Arrays.asList(new String[] {"a"});
+        return leaveRepository.findLeavesByUser(userRepository.findOne(userid));
     }
 
     @Override
